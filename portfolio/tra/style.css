@@ -645,14 +645,245 @@ section {
   border-radius: 0.5rem;
 }
 
+/* Hobbies Section */
+.hobbies {
+    padding: 80px 10%;
+    background: linear-gradient(to right, #fcd1e1, #f9cadc, #f495b8, #d23c75);
+    color: #fff;
+    text-align: center;
+}
 
+.hobbies .sub-title {
+    font-size: 42px;
+    margin-bottom: 40px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
 
+.hobbies-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
 
+/* Hobby card style */
+.hobby-card {
+    background: #ffffff;
+    color: #333;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    flex: 1 1 300px;
+    max-width: 350px;
+    text-align: center;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s forwards;
+}
 
+/* Delay mỗi thẻ một chút để hiện đẹp */
+.hobby-card:nth-child(1) { animation-delay: 0.1s; }
+.hobby-card:nth-child(2) { animation-delay: 0.3s; }
+.hobby-card:nth-child(3) { animation-delay: 0.5s; }
 
+/* Hover effect */
+.hobby-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
 
+/* Icon */
+.hobby-card i {
+    font-size: 50px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
 
+/* Icon hover */
+.hobby-card:hover i {
+    transform: scale(1.2);
+    color: #ff6392;
+}
 
+/* Heading */
+.hobby-card h2 {
+    font-size: 24px;
+    margin: 15px 0 10px;
+    color: #d53773;
+}
+
+/* Paragraph */
+.hobby-card p {
+    font-size: 15px;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+/* Image style */
+.hobby-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+/* Image hover effect */
+.hobby-card:hover .hobby-img {
+    transform: scale(1.05);
+}
+
+/* Animation on load */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hobbies-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hobby-card {
+        max-width: 90%;
+    }
+}
+/* Projects Section */
+.projects {
+    padding: 80px 10%;
+    background: linear-gradient(to right, #fcd1e1, #f9cadc, #f495b8, #d23c75);
+    color: #fff;
+    text-align: center;
+}
+
+.projects .sub-title {
+    font-size: 42px;
+    margin-bottom: 40px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.projects-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+/* Project Card Style */
+.project-card {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    border-radius: 15px;
+    padding: 30px 25px;
+    min-height: 280px;
+    flex: 1 1 300px;
+    max-width: 400px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    animation: fadeInUp 1s forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* Delay mỗi thẻ */
+.project-card.one { animation-delay: 0.2s; }
+.project-card.two { animation-delay: 0.4s; }
+
+.project-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5); /* overlay làm tối hình nền */
+    z-index: 0;
+    transition: background 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.project-card:hover::before {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* Nội dung trong card */
+.project-card h2,
+.project-card p,
+.project-card .read {
+    position: relative;
+    z-index: 1;
+}
+
+.project-card h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.project-card p {
+    font-size: 15px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* Nút xem GitHub */
+.project-card .read {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #d53773;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.project-card .read:hover {
+    background: #a02a58;
+    transform: scale(1.05);
+}
+
+/* Gán hình nền cho từng project */
+.project-card.one {
+    background-image: url('images/pr1.jpg');
+}
+
+.project-card.two {
+    background-image: url('images/pr2.jpg');
+}
+
+/* Animation khi load */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .projects-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .project-card {
+        max-width: 90%;
+    }
+}
 
 
 
