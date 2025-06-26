@@ -78,3 +78,4 @@ document.addEventListener("mousemove", (e) => {
 setInterval(() => {
   changeMember(currentIndex + 1, 'next');
 }, 10000); 
+
