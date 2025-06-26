@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Dự án - Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="loading">
+          <div class="loader"></div>
+      </div>
+      <canvas id="particleCanvas"></canvas>
+
+  <nav>
+    <div class="container">
+      <ul>
+        <li><a href="about.html">Giới thiệu</a></li>
+        <li><a href="skills.html">Kỹ năng</a></li>
+        <li><a href="projects.html">Dự án</a></li>
+        <li><a href="education.html">Học vấn</a></li>
+        <li><a href="contact.html">Liên hệ</a></li>
+      </ul>
+      <button id="darkModeToggle">Chuyển Dark Mode</button>
+    </div>
+  </nav>
+
+  <header>
+    <div class="container">
+      <img src="images/avt.png" alt="Ảnh đại diện" class="profile-img">
+      <div class="header-info">
+        <h1>NGUYỄN TRIỀU DƯƠNG</h1>
+        <p>Sinh viên Công nghệ Thông tin</p>
+        <div class="contact">
+          <p>Võ Oanh, Quận Bình Thạnh, Tp HCM</p>
+          <p><a href="tel:+84866501213">+84 866 501 213</a></p>
+          <p><a href="mailto:ngtrieuduong27@gmail.com">ngtrieuduong27@gmail.com</a></p>
+          <p><a href="https://github.com/trieuduong09" target="_blank">GitHub</a></p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="projects">
+    <div class="container">
+      <h2>Dự án</h2>
+      <div class="project-item" onclick="openModal('project1')">
+        <h3>Ứng dụng Quản lý Giặt ủi</h3>
+        <img src="images/p1.png" alt="Project 1">
+        <p><em>Tháng 2/2025 - 4/2025</em></p>
+        <p>Phát triển ứng dụng web bằng React và Firebase. Vai trò: Backend Developer.</p>
+      </div>
+      <div class="project-item" onclick="openModal('project2')">
+        <h3>Trò chơi 2D đơn giản</h3>
+        <img src="images/p2.png" alt="Project 2">
+        <p><em>Tháng 3/2024 - Tháng 5/2024</em></p>
+        <p>Xây dựng trò chơi 2D bằng Pygame, tích hợp âm thanh và hiệu ứng.</p>
+      </div>
+    </div>
+  </section>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">×</span>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

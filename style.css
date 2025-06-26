@@ -1,0 +1,240 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+
+}
+
+body {
+  background: url("images/cover.png") no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  overflow-x: hidden;
+  position: relative;
+  z-index: 1;
+  
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(8, 8, 8, 0.4);
+  z-index: -1; 
+}
+
+
+
+.team-section {
+  padding: 80px 20px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+h1 {
+  font-size: 36px;
+  color: #00ffd5;
+  margin-bottom: 50px;
+  animation: slideIn 1s ease forwards;
+}
+
+.member-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.member-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  width: 300px;
+  animation: fadeIn 0.5s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.member-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.member-card.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.member-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+}
+
+.member-card img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #00ffd5;
+  margin-bottom: 15px;
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.member-card img:hover {
+  transform: scale(1.1) rotate(5deg);
+  filter: brightness(1.3);
+}
+
+.member-card h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.member-card a {
+  text-decoration: none;
+  background: linear-gradient(to right, #ff4b2b, #ff416c);
+  padding: 10px 25px;
+  border-radius: 30px;
+  color: white;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 10px;
+  transition: background-color ease 0.3s ease;
+}
+
+.member-card a:hover {
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
+}
+
+
+.controls {
+  margin-top: 30px;
+}
+
+.controls button {
+  background: #00ffd5;
+  color: #0f2027;
+  padding: 10px 20px;
+  border: none;
+  margin: 0 10px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.2s ease;
+}
+
+.controls button:hover {
+  transform: scale(1.1);
+}
+
+
+.background-circles {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+
+
+@keyframes float {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; }
+}
+
+@keyframes slideIn {
+  0% { transform: translateY(-40px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+.member-card {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.5s ease-in-out;
+}
+
+.member-card.slide-out-left {
+  opacity: 0;
+
+
+transform: translateX(-100%);
+}
+
+.member-card.slide-out-right {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.member-card.slide-in-left {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.member-card.slide-in-right {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.member-card.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+.glow-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05), transparent 70%);
+  z-index: 0;
+  pointer-events: none;
+  animation: glow 6s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  0% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0.6;
+  }
+}
+.gradient-glow {
+  font-size: 48px;
+  font-weight: bold;
+  background: linear-gradient(45deg, #ff004f, #00ffd5, #ff004f);
+  background-size: 200% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+  transition: transform 0.1s ease-out;
+}
