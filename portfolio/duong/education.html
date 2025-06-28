@@ -2,8 +2,10 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Học vấn - Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Portfolio Sinh Viên IT - Nguyễn Triều Dương</title>
+      <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
   <div id="loading">
@@ -24,39 +26,42 @@
     </div>
   </nav>
 
-  <header>
-    <div class="container">
-      <img src="images/avt.png" alt="Ảnh đại diện" class="profile-img">
-      <div class="header-info">
-        <h1>NGUYỄN TRIỀU DƯƠNG</h1>
-        <p>Sinh viên Công nghệ Thông tin</p>
-        <div class="contact">
-          <p>Võ Oanh, Quận Bình Thạnh, Tp HCM</p>
-          <p><a href="tel:+84866501213">+84 866 501 213</a></p>
-          <p><a href="mailto:ngtrieuduong27@gmail.com">ngtrieuduong27@gmail.com</a></p>
-          <p><a href="https://github.com/trieuduong09" target="_blank">GitHub</a></p>
-        </div>
-      </div>
-    </div>
-  </header>
-
   <section class="education">
     <div class="container">
       <h2>Học vấn</h2>
       <div class="timeline">
-        <div class="timeline-item">
-          <h3>Đại học Giao Thông Vận Tải TP.HCM</h3>
-          <p><em>2023 - 2027 (dự kiến)</em></p>
-          <p>Cử nhân Công nghệ Thông tin</p>
+        
+        <div class="timeline-item" onclick="showTimelineImage(1)">
+          <img src="images/edu1.jpg" alt="Đại học GTVT" class="timeline-thumb">
+          <div>
+            <h3>Trường Đại học Giao Thông Vận Tải TP.HCM</h3>
+            <p><em>2023 - 2027 (dự kiến)</em></p>
+            <p>Cử nhân Công nghệ Thông tin</p>
+          </div>
         </div>
-        <div class="timeline-item">
-          <h3>Trường THPT Nguyễn Trãi</h3>
-          <p><em>2020 - 2023</em></p>
-          <p>Tốt nghiệp THPT</p>
+
+        <div class="timeline-item" onclick="showTimelineImage(2)">
+          <img src="images/edu2.jpg" alt="THPT Nguyễn Trãi" class="timeline-thumb">
+          <div>
+            <h3>Trường THPT Nguyễn Trãi</h3>
+            <p><em>2020 - 2023</em></p>
+            <p>Tốt nghiệp THPT</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
+
+  <div id="image-preview">
+    <img id="preview-img" src="" alt="Hình ảnh học vấn">
+  </div>
+
+  <footer>
+        <div class="container">
+            <p>© 2025 Nguyễn Triều Dương.</p>
+            <button id="back-to-top">Lên đầu trang</button>
+        </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>

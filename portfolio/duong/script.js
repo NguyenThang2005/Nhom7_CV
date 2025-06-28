@@ -1,17 +1,22 @@
-// script.js
 document.addEventListener('DOMContentLoaded', () => {
     const backToTop = document.getElementById('back-to-top');
     const contactForm = document.getElementById('contactForm');
     const darkModeToggle = document.getElementById('darkModeToggle');
 
-    // Nút back to top
+    // Ẩn loading ngay khi DOM load xong
+    const loading = document.getElementById('loading');
+    if (loading) {
+        loading.style.display = 'none';
+    }
+
+    // Back to Top
     if (backToTop) {
         backToTop.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
 
-    // Form liên hệ
+    // Form Liên Hệ
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -26,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
         progressBars.forEach(bar => {
             const percent = bar.getAttribute('data-percent');
             bar.style.setProperty('--progress', `${percent}%`);
-            bar.classList.add('animate');
         });
     }
 
@@ -35,57 +39,79 @@ document.addEventListener('DOMContentLoaded', () => {
         darkModeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
             darkModeToggle.textContent = document.body.classList.contains('dark-mode') ? 'Chuyển Light Mode' : 'Chuyển Dark Mode';
-            // Lưu trạng thái dark mode vào localStorage
-            if (document.body.classList.contains('dark-mode')) {
-                localStorage.setItem('darkMode', 'enabled');
-            } else {
-                localStorage.removeItem('darkMode');
-            }
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
         });
 
-        // Áp dụng dark mode từ localStorage khi tải trang
         if (localStorage.getItem('darkMode') === 'enabled') {
             document.body.classList.add('dark-mode');
             darkModeToggle.textContent = 'Chuyển Light Mode';
         }
     }
 
-    // Smooth Scroll for Navigation (cập nhật để chuyển trang thay vì cuộn)
-    document.querySelectorAll('nav a').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+    // Smooth Scroll for Navigation
+    const navLinks = document.querySelectorAll('nav a');
+    if (navLinks.length > 0) {
+        navLinks.forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                if (href && href !== '#') {
+                    window.location.href = href;
+                }
+            });
+        });
+
+        // Đánh dấu trang hiện tại
+        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPath) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    // Keyboard Navigation for Menu
+    let currentFocus = -1;
+
+if (navLinks.length > 0) {
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
             e.preventDefault();
-            const href = this.getAttribute('href');
+
+            // Di chuyển focus
+            if (e.key === 'ArrowLeft' && currentFocus > 0) {
+                currentFocus--;
+            } else if (e.key === 'ArrowRight' && currentFocus < navLinks.length - 1) {
+                currentFocus++;
+            } else if (currentFocus === -1) {
+                currentFocus = 0; // Nếu chưa chọn gì, chọn phần tử đầu
+            }
+
+            navLinks.forEach((link, index) => {
+                link.classList.remove('focus');
+                if (index === currentFocus) {
+                    link.classList.add('focus');
+                    link.focus();
+                }
+            });
+
+        } else if (e.key === 'Enter' && currentFocus >= 0) {
+            e.preventDefault();
+            const href = navLinks[currentFocus].getAttribute('href');
             if (href && href !== '#') {
                 window.location.href = href;
             }
-        });
+        }
     });
 
-    // Fade-in khi cuộn
-    function checkFadeIn() {
-        const sections = document.querySelectorAll('section');
-        if (sections.length > 0) {
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                if (sectionTop < windowHeight - 50) {
-                    section.style.opacity = '1';
-                    section.style.transform = 'translateY(0)';
-                }
+        // Reset focus khi click chuột
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                currentFocus = -1;
+                navLinks.forEach(l => l.classList.remove('focus'));
             });
-        }
+        });
     }
-
-    window.addEventListener('scroll', checkFadeIn);
-    window.addEventListener('load', checkFadeIn);
-
-    // Loading Animation
-    window.addEventListener('load', () => {
-        const loading = document.getElementById('loading');
-        if (loading) {
-            loading.style.display = 'none';
-        }
-    });
 
     // Particle Animation
     const canvas = document.getElementById('particleCanvas');
@@ -121,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const numberOfParticles = 100;
 
         function init() {
-            particlesArray.length = 0; // Xóa mảng cũ
+            particlesArray.length = 0;
             for (let i = 0; i < numberOfParticles; i++) {
                 particlesArray.push(new Particle());
             }
@@ -178,15 +204,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 content = `
                     <h3>Ứng dụng Quản lý Giặt ủi</h3>
                     <p><em>Tháng 2/2025 - 4/2025</em></p>
-                    <p>Phát triển ứng dụng web bằng React và Firebase. Vai trò: Backend Developer.</p>
+                    <p>Phát triển ứng dụng web để đặt lịch dịch vụ giặt ủi lấy tại nơi giao tận tay bằng React và Firebase. Lập trình bằng ngôn ngữ JAVA chạy bằng Spring boot. Vai trò: Backend Developer (30%).</p>
                     <p><a href="https://github.com/hoThanhThien/LT_JAVA_010412213603.git" target="_blank">Xem mã nguồn</a></p>
                 `;
             } else if (projectId === 'project2') {
                 content = `
-                    <h3>Trò chơi 2D đơn giản</h3>
-                    <p><em>Tháng 3/2024 - Tháng 5/2024</em></p>
-                    <p>Xây dựng trò chơi 2D bằng Pygame, tích hợp âm thanh và hiệu ứng.</p>
-                    <p><a href="https://github.com/yourusername/project2" target="_blank">Xem mã nguồn</a></p>
+                    <h3>Portfolio cá nhân</h3>
+                    <p><em>Tháng 5/2025 - Hiện tại</em></p>
+                    <p>Xây dựng một portfolio cá nhân chạy bằng HTML, CSS, JavaScript. Giới thiệu bản thân để nộp bài giữa kì môn Lập trình web.</p>
+                    <p><a href="https://github.com/NguyenThang2005/Nhom7_CV" target="_blank">Xem mã nguồn</a></p>
                 `;
             }
             modalContent.innerHTML = content;
@@ -215,4 +241,60 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
     }
+
+    // Thêm chức năng hiển thị hình ảnh khi bấm vào timeline-item
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    const previewContainer = document.createElement('div');
+    previewContainer.id = 'image-preview';
+    previewContainer.style.position = 'fixed';
+    previewContainer.style.top = '50%';
+    previewContainer.style.left = '50%';
+    previewContainer.style.transform = 'translate(-50%, -50%)';
+    previewContainer.style.maxWidth = '60%';
+    previewContainer.style.zIndex = '9999';
+    previewContainer.style.display = 'none';
+    previewContainer.style.background = '#fff';
+    previewContainer.style.border = '4px solid #e74c3c';
+    previewContainer.style.borderRadius = '10px';
+    previewContainer.style.boxShadow = '0 0 20px rgba(0,0,0,0.5)';
+    document.body.appendChild(previewContainer);
+
+    const previewImage = document.createElement('img');
+    previewImage.style.width = '100%';
+    previewImage.style.height = 'auto';
+    previewImage.style.display = 'block';
+    previewContainer.appendChild(previewImage);
+
+    timelineItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            previewImage.src = `img/timeline${index + 1}.jpg`; // ảnh tương ứng timeline1.jpg, timeline2.jpg...
+            previewContainer.style.display = 'block';
+        });
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!previewContainer.contains(e.target) && !e.target.closest('.timeline-item')) {
+            previewContainer.style.display = 'none';
+        }
+    });
+
+    // Hiển thị ảnh lớn khi bấm vào từng mục học vấn
+    const eduItems = document.querySelectorAll('.timeline-item');
+    if (eduItems.length > 0) {
+        eduItems.forEach((item, idx) => {
+            item.addEventListener('click', (e) => {
+                e.stopPropagation();
+                previewImage.src = `images/edu_full${idx + 1}.jpg`; // ảnh lớn tương ứng
+                previewContainer.style.display = 'block';
+            });
+        });
+    }
+
+    document.addEventListener('click', function (e) {
+    const preview = document.getElementById('image-preview');
+    if (!preview.contains(e.target) && !e.target.closest('.timeline-item')) {
+        preview.style.display = 'none';
+    }
+    });
+    
 });
