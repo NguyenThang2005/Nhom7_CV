@@ -163,3 +163,112 @@ function createElementRandom() {
 
 // Gọi hàm tạo hạt
 createElementRandom();
+
+
+// Modal xem ảnh
+const modal = document.getElementById("imageModal");
+const modalImg = document.getElementById("modalImage");
+const closeModal = document.querySelector(".close-modal");
+
+// Trong file script.js, thay thế hàm openModal hiện tại bằng:
+function openModal(element) {
+    const imgSrc = element.getAttribute('data-image');
+    const hobbyType = imgSrc.split('/')[1].split('.')[0]; // Lấy tên hobby từ tên file ảnh
+    
+    // Hiển thị ảnh chính
+    modalImg.src = imgSrc;
+    
+    // Tạo các ảnh bổ sung dựa trên hobby type
+    const additionalImagesContainer = document.querySelector('.additional-images');
+    additionalImagesContainer.innerHTML = '';
+    
+    // Tạo 3 ảnh bổ sung (giả sử bạn có các ảnh đặt tên theo quy tắc hobbyType1.jpg, hobbyType2.jpg,...)
+    for (let i = 1; i <= 3; i++) {
+        const img = document.createElement('img');
+        img.src = `img/${hobbyType}${i}.jpg`; // Giả sử ảnh có tên như sport1.jpg, sport2.jpg,...
+        img.alt = `Hobby image ${i}`;
+        img.onclick = function() {
+            modalImg.src = this.src; // Cho phép click vào ảnh nhỏ để xem lớn
+        };
+        additionalImagesContainer.appendChild(img);
+    }
+    
+    modal.classList.add('show');
+    event.stopPropagation();
+}
+
+closeModal.onclick = function() {
+    modal.classList.remove('show');
+}
+
+// Đóng modal khi click bên ngoài ảnh
+modal.onclick = function(event) {
+    if (event.target === modal) {
+        modal.classList.remove('show');
+    }
+}
+
+
+// Thêm hiệu ứng load thanh progress
+function animateProgressBars() {
+    document.querySelectorAll('.progress-fill').forEach(bar => {
+        const targetWidth = bar.style.width;
+        bar.style.width = '0';
+        setTimeout(() => {
+            bar.style.width = targetWidth;
+        }, 100);
+    });
+}
+
+// Gọi hàm này khi section skills hiển thị
+function animateMainContent() {
+    // ... các code hiện có ...
+    animateProgressBars();
+}
+
+
+function openModal(element) {
+    const imgSrc = element.getAttribute('data-image');
+    const hobbyType = imgSrc.split('/')[1].split('.')[0];
+    
+    // Hiển thị ảnh chính
+    modalImg.src = imgSrc;
+    
+    // Tạo các ảnh bổ sung
+    const additionalImagesContainer = document.querySelector('.additional-images');
+    additionalImagesContainer.innerHTML = '';
+    
+    // Tạo mảng các ảnh liên quan (bao gồm cả ảnh hiện tại)
+    const relatedImages = [
+        `img/${hobbyType}.jpg`,
+        `img/${hobbyType}1.jpg`,
+        `img/${hobbyType}2.jpg`,
+        `img/${hobbyType}3.jpg`
+    ].filter(img => img !== imgSrc); // Loại bỏ ảnh hiện tại
+    
+    // Thêm ảnh hiện tại vào đầu mảng
+    relatedImages.unshift(imgSrc);
+    
+    // Hiển thị tất cả ảnh
+    relatedImages.forEach((imgPath, index) => {
+        const img = document.createElement('img');
+        img.src = imgPath;
+        img.alt = `Hobby image ${index + 1}`;
+        img.dataset.originalIndex = index; // Lưu vị trí ban đầu
+        img.onclick = function() {
+            // Hoán đổi ảnh khi click
+            const tempSrc = modalImg.src;
+            modalImg.src = this.src;
+
+            
+            // Cập nhật vị trí trong mảng
+            const clickedIndex = parseInt(this.dataset.originalIndex);
+            relatedImages[clickedIndex] = modalImg.src;
+            relatedImages[0] = this.src;
+        };
+        additionalImagesContainer.appendChild(img);
+    });
+    
+    modal.classList.add('show');
+    event.stopPropagation();
+}
