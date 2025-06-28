@@ -192,10 +192,18 @@ body {
     padding: 0;
     line-height: 1.6;
     color: var(--text-color);
-    background-color: var(--bg-light);
+    background: linear-gradient(-45deg, #3d6168, #885e5e, #a678a9, #054a5c);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
     overflow-x: hidden;
     position: relative;
     font-size: 20px;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 #particles-js {
@@ -234,13 +242,13 @@ header, main, footer, .section, .hero-slideshow {
 }
 
 header {
-    background: var(--bg-dark);
+
     color: #fff;
     padding: 1rem 0;
     position: sticky;
     top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 5px var(--shadow-medium);
+    z-index: 500; /* Giữ nguyên hoặc giảm xuống nếu cần */
+
 }
 
 nav ul {
@@ -287,64 +295,125 @@ nav ul li a:hover::after {
 
 .hero-slideshow {
     position: relative;
-    height: 60vh; 
+    height: 60vh;
+    display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     color: #fff;
-    border-radius: 8px;
-    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-    margin-left: 50px;
-    margin-right: 50px;
+    margin: 0 50px;
+    padding: 40px;
+    border-radius: 15px;
+
+
+
+
 }
 
 .slide-show {
     width: 450px;
     overflow: hidden;
-    margin-left: 100px;
-    padding-top: 30px;
-    float: right;
-    margin-right: 60px;
-    border-radius: 12%;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s ease;
 }
 
-.slide-show:hover{
-    filter: contrast(1.1);
-    transform: translateY(-5px) translateZ(10px);
-    transition: all 0.3s ease;
+.slide-show:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
 }
 
 
 
-.list-images{
+.list-images {
     display: flex;
-    transform: translateX();
-    transition: 0.5s;
+    transition: transform 0.5s ease;
+}
+
+.list-images img {
+    width: 450px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 12px;
 }
 
 
 /* giới thiệu */
-.intro{
+.intro {
+    flex: 1;
+    padding-right: 40px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.intro h1 {
+    font-size: 50px;
+    margin-bottom: 20px;
+    background: linear-gradient(to right, #fff, #4ecdc4, #ff6b6b);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient 3s linear infinite;
     margin-left: 50px;
 }
 
-.intro h1{
-    font-size: 50px;
-    text-shadow: 5px 3px 2px black, 0px 0px 25px blue;
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-.intro p{
-    margin-left: 70px;
+.intro p {
     font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    margin-left: 100px;
+    font-style: italic;
 }
 
-.intro h1 span{
+.intro h1 span {
     position: relative;
     display: inline-block;
     font-size: 70px;
-    top: 10px;
-    font-family: 'Arial';
     animation: bounce 1s ease infinite alternate;
-    font-style: italic;
+    
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .hero-slideshow {
+        height: auto;
+        flex-direction: column;
+        padding: 30px;
+    }
+    
+    .slide-show {
+        width: 100%;
+        margin-top: 30px;
+    }
+    
+    .intro {
+        padding-right: 0;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-slideshow {
+        margin: 0 20px;
+        padding: 20px;
+    }
+    
+    .intro h1 {
+        font-size: 40px;
+    }
+    
+    .intro h1 span {
+        font-size: 50px;
+    }
+    
+    .list-images img {
+        height: 250px;
+    }
 }
 
 .h1 span:nth-child(1){
@@ -417,25 +486,19 @@ h1 span:nth-child(12){
     padding: 60px 20px;
     margin: 20px auto;
     max-width: 900px;
-    background-image: url('img/back2.png');
-    border-radius: 8px;
-    box-shadow: 0 4px 10px var(--shadow-light);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s ease-out, transform 0.6s ease-out;
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     opacity: 0;
-    transform: translateY(50px) translateZ(-100px) rotateX(20deg);
-    transform-style: preserve-3d;
-    perspective: 1000px;
+    transform: translateY(50px);
 }
 
 .section.show {
     opacity: 1;
-    transform: translateY(0) translateZ(0) rotateX(0);
+    transform: translateY(0);
 }
 
-.section:hover {
-    transform: translateY(-5px) translateZ(10px);
-    box-shadow: 0 6px 15px var(--shadow-light);
-}
 
 .section h2 {
     text-align: center;
@@ -443,23 +506,25 @@ h1 span:nth-child(12){
     font-size: 2.5em;
     position: relative;
     padding-bottom: 10px;
-    color: white;
-    text-shadow: 20px -10px 7px blue;
+    color: rgb(35, 8, 5);
+    text-shadow: 0px 2px 4px red;
     font-style: italic;
-    transition: all 0.5s ease;
+    /* Đã bỏ transition và các hiệu ứng hover */
 }
 
-.section h2:hover {
-    transform: scale(1.05);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 
-                20px -10px 7px blue;
-    color: #ff6b6b;
-}
 
-.section h2:hover::after {
-    width: 80px;
-    background-color: #ff6b6b;
-    height: 4px;
+
+.section h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+    /* Giữ nguyên gạch chân nhưng không có hiệu ứng hover */
 }
 
 @keyframes bounce {
@@ -488,17 +553,15 @@ h1 span:nth-child(12){
 }
 
 .skill-item {
-    background: linear-gradient(135deg, rgba(40, 40, 40, 0.9), rgba(70, 70, 70, 0.9));
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
     padding: 25px;
     border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     text-align: center;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-    color: #e0e0e0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    /* Đã bỏ transition và các hiệu ứng hover */
 }
 
 .skill-item::before {
@@ -664,7 +727,6 @@ h1 span:nth-child(12){
 
 /*phần footer*/
 footer {
-    background: var(--bg-dark);
     color: #fff;
     text-align: center;
     padding: 20px 0;
@@ -710,11 +772,13 @@ footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: linear-gradient(45deg, rgb(219, 174, 174) , #7378d2, #ca2598);
-    padding: 20px;
-    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 15px;
     max-width: 900px;
     margin: auto;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .text {
@@ -756,7 +820,7 @@ footer {
     position: relative;
     overflow: hidden;
     transition: all 0.5s ease;
-    background: rgba(0, 0, 0, 0.6);
+
 }
 
 .future-grid {
@@ -801,7 +865,7 @@ footer {
 }
 
 .future-item strong {
-    color: #ff6b6b;
+    color: black;
     display: block;
     margin-bottom: 10px;
     padding-left: 30px;
@@ -844,8 +908,13 @@ footer {
     }
 }
 
-.lienhe{
-    border-radius: 10px;
+
+.lienhe {
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* Thêm style cho các button contact */
@@ -958,6 +1027,7 @@ footer {
     overflow: hidden;
     transform-style: preserve-3d;
     perspective: 1000px; 
+    transform: scale(1.03);
 }
 
 .project-item:hover {
@@ -994,6 +1064,8 @@ footer {
     margin-bottom: 10px;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
+
+
 
 .project-description {
     color: #ddd;
@@ -1092,3 +1164,346 @@ footer {
 .back-to-top:active {
     transform: translateY(0);
 }
+
+
+/* ===== HOBBIES SECTION ===== */
+.hobbies-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.hobby-item {
+    perspective: 1000px;
+    height: 200px;
+}
+
+.hobby-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgb(220, 85, 85);
+
+}
+
+.hobby-card::after{
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border: red;
+    z-index: -1;
+}
+
+.hobby-item:hover .hobby-card {
+    transform: rotateY(180deg);
+}
+
+.hobby-front, .hobby-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.hobby-front {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hobby-back {
+    background-size: cover;
+    background-position: center;
+    transform: rotateY(180deg);
+    overflow: hidden;
+}
+
+.hobby-back::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.hobby-icon {
+    font-size: 3em;
+    margin-bottom: 15px;
+    color: #4ecdc4;
+    transition: all 0.3s ease;
+}
+
+.hobby-item:hover .hobby-front .hobby-icon {
+    color: #ff6b6b;
+}
+
+.hobby-front h3 {
+    margin: 0;
+    font-size: 1.5em;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Màu sắc riêng cho từng hobby */
+.hobby-item:nth-child(1) .hobby-icon { color: #1a2a6c; }
+.hobby-item:nth-child(2) .hobby-icon { color: #b21f1f; }
+.hobby-item:nth-child(3) .hobby-icon { color: #00684a; }
+.hobby-item:nth-child(4) .hobby-icon { color: #7b1fa2; }
+
+.hobby-item:nth-child(1):hover .hobby-front .hobby-icon { color: #4a6bff; }
+.hobby-item:nth-child(2):hover .hobby-front .hobby-icon { color: #ff4a4a; }
+.hobby-item:nth-child(3):hover .hobby-front .hobby-icon { color: #00c896; }
+.hobby-item:nth-child(4):hover .hobby-front .hobby-icon { color: #c94aff; }
+
+/* Responsive */
+@media (max-width: 992px) {
+    .hobbies-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .hobbies-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ===== MODAL STYLES ===== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.show {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    position: relative;
+    max-width: 80%;
+    max-height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#modalImage {
+    max-width: 100%;
+    max-height: 70vh;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+.modal.show #modalImage {
+    transform: scale(1);
+}
+
+.modal-nav {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.modal-prev, .modal-next {
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-prev:hover, .modal-next:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+}
+
+.image-counter {
+    color: white;
+    margin-top: 15px;
+    font-size: 1.2em;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.close-modal {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    color: white;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+    color: #ff6b6b;
+}
+
+.hobby-back {
+    background-size: cover;
+    background-position: center;
+    transform: rotateY(180deg);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+
+/* ===== PHẦN KỸ NĂNG VỚI THANH % ===== */
+.skills-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.skill-item {
+    margin-bottom: 25px;
+}
+
+.skill-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.skill-name {
+    color: white;
+    font-size: 1.1em;
+}
+
+.skill-name i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.skill-percent {
+    color: #4ecdc4;
+    font-weight: bold;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.progress-fill {
+    height: 100%;
+    border-radius: 5px;
+    transition: width 1s ease-in-out;
+    position: relative;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, 
+              rgba(255,255,255,0.1) 0%, 
+              rgba(255,255,255,0.3) 50%, 
+              rgba(255,255,255,0.1) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* Hiệu ứng khi load trang */
+.section.show .progress-fill {
+    animation: loadProgress 1.5s ease-out forwards;
+}
+
+@keyframes loadProgress {
+    from { width: 0; }
+    to { width: (giá trị / tương ứng); }
+}
+
+/* Thêm vào file style.css */
+.modal-gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 1000px;
+}
+
+.additional-images {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.additional-images img {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.additional-images img:hover {
+    transform: scale(1.05);
+}
+
+/* Điều chỉnh kích thước ảnh chính */
+.modal-content {
+    max-width: 80%;
+    max-height: 60vh;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+
