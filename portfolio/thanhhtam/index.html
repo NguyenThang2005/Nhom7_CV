@@ -1,40 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Thanhh Tam Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
-
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thanhh Tam Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
 </head>
-<audio autoplay loop>
-  <source src="background-music.mp3" type="audio/mpeg">
-</audio>
-
 <body>
+    
     <!-- Header -->
     <div id="header">
         <div class="container">
             <nav>
-                <img src="images/logo.png" class="logo" alt="Logo" />
+                <h2 class="logo-text">Portfolio</h2>
                 <ul>
                     <li><a href="#header">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#services">Services</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#portfolio">Projects</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
-            <div class="header-text">
-                <p>FE/BE Developer</p>
-                <h1>Hi, I'm <span>ThanhhTam</span><br />From Ho Chi Minh City</h1>
-            </div>
+  <div class="header-text">
+  <p class="tagline fade-in">Fullstack Developer</p>
+  <h1 class="name-line fade-in typing">
+    <span class="hi-text">Hi, I'm</span>
+    <span class="highlight-name typing-text" id="typing-text"> ThanhhTam</span>
+  </h1>
+  <h2 class="sub-city fade-in delay">From Ho Chi Minh City, Vietnam</h2>
+</div>
+
+
                 
         </div>
     </div>
@@ -59,6 +58,9 @@
                         <p class="tab-links active-link" onclick="opentab(event, 'skills')">Skills</p>
                         <p class="tab-links" onclick="opentab(event, 'experience')">Experience</p>
                         <p class="tab-links" onclick="opentab(event, 'education')">Education</p>
+                        <p class="tab-links" onclick="opentab(event, 'hobby')">Hobby</p>
+                        <p class="tab-links" onclick="opentab(event, 'dob')">Birthday</p>
+                        <p class="tab-links" onclick="opentab(event, 'certs')">Certificates</p>
                     </div>
 
                     <div class="tab-contents active-tab" id="skills">
@@ -71,19 +73,38 @@
 
                     <div class="tab-contents" id="experience">
                         <ul>
-                            <li><span>2021 - Current</span><br />Proficient in multiple programming languages</li>
-                            <li><span>2023 - 2024</span><br />Computer Simulation Project</li>
-                            <li><span>2024 - 2025</span><br />Health Care Project</li>
+                            <li><span>2023 - Current</span><br />Web Development Projects</li>
+                            <li><span>2023 - 2024</span><br />Diamond Store Manager</li>
+                            <li><span>2024 - 2025</span><br />Skin Care Products</li>
                         </ul>
                     </div>
 
                     <div class="tab-contents" id="education">
                         <ul>
-                            <li><span>2023</span><br />Student at the University of Transport in Ho Chi Minh City</li>
-                            <li><span>2024</span><br />Student at the University of Transport in Ho Chi Minh City</li>
-                            <li><span>2025</span><br />Student at the University of Transport in Ho Chi Minh City</li>
+                            <li><span>2020-2023</span><br />Tran Quoc Tuan High School in Quang Ngai City</li>
+                            <li><span>2023-Current</span><br />Student at the University of Transport in Ho Chi Minh City</li>
                         </ul>
                     </div>
+                     <div class="tab-contents" id="hobby">
+                        <ul>
+                            <li><span>Sports</span><br />Football, Badminton</li>
+                            <li><span>Creative</span><br />Photography, UI/UX Exploration</li>
+                            <li><span>Others</span><br />Listening to music, Traveling, Gaming</li>
+                        </ul>
+                        </div>
+                        <div class="tab-contents" id="dob">
+                        <ul>
+                            <li><span>Birthdate</span><br />April 13, 2005</li>
+                            <li><span>Gender</span><br />Male</li>
+                            <li><span>Hometown</span><br />Quang Ngai City, Vietnam</li>
+                        </ul>
+                        </div>
+                        <div class="tab-contents" id="certs">
+                    <ul>
+                        <li><span>Certificates:</span><br />No official certificates yet. Currently focusing on learning and gaining experience.</li>
+                    </ul>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -92,7 +113,7 @@
     <!-- Services Section -->
     <div id="services">
         <div class="container">
-            <h1 class="sub-title">My Services</h1>
+            <h1 class="sub-title">My Works</h1>
             <div class="services-list">
                 <div>
                     <i class="fa-solid fa-code"></i>
@@ -128,38 +149,36 @@
     <!--------portfolio------->
     <div id="portfolio">
         <div class="container">
-            <h1 class="sub-title">My Work</h1>
+            <h1 class="sub-title">My Projects</h1>
             <div class="work-list">
                 <div class="word">
-                    <img src="images/work-1.jpg" >
+                    <img src="images/skin.png" >
                     <div class="layer">
-                        <h3>Social Media App</h3>
-                        <p>A platform for users to share posts,<br>
-                        comment, and chat in real-time.</p>
+                        <h3>Sell Skin Care Products</h3>
+                        <p>Developed a responsive website for selling skin care products 
+                            featuring product listings, shopping cart, and user-friendly interface.</p>
 
-                        <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <a href="https://github.com/thinhtnp/LTJAVA_TOPIC1"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+                 <div class="word">
+                    <img src="images/diamond.png" >
+                    <div class="layer">
+                        <h3>Diamond Store Manager</h3>
+                        <p>A web application to manage diamond store inventory, sales, and customer information efficiently. </p>
+                        <a href="https://github.com/hoThanhThien/NHOM_01"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                     </div>
                 </div>
                  <div class="word">
                     <img src="images/work-2.jpg" >
                     <div class="layer">
-                        <h3>Self Study</h3>
-                        <p>Independently learned web development <br>
-                        online courses, projects, and documentation.</p>
-                        <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-                 <div class="word">
-                    <img src="images/work-3.jpg" >
-                    <div class="layer">
-                        <h3>Personal Blog Website</h3>
-                        <p>Created a blog to share thoughts and<br>
-                        tech content, with responsive design.</p>
-                        <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <h3>Web Portfolio</h3>
+                        <p>A personal portfolio website to showcase my skills, projects, and contact information in a professional layout."</p>
+                        <a href="https://github.com/NguyenThang2005/Nhom7_CV"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                     </div>
                 </div> 
             </div>
-            <a href="#" class ="btn">See more</a>
+            <a href="#" class ="btn">See Again</a>
         </div>
     </div>
     <!-- ----------contact--------- -->
@@ -192,22 +211,16 @@
         <div class="CopyRight">
             <p> © CopyRight by ThanhhTam</p>
         </div>
+        <div class="word" data-aos="zoom-in-up">
+
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <script src="scripts.js"></script>
+    
 </body>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
 </html>
